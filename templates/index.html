@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAK GPA Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="app-shell">
+        <section class="intro">
+            <p class="eyebrow">MAK ACADEMIC TOOL</p>
+            <h1>Calculate your GPA.</h1>
+            <p class="intro-copy">Add your courses and enter either a mark or a letter grade. The result uses the 5.0 MAK grading scale.</p>
+        </section>
+
+        <section class="calculator-panel" aria-labelledby="courses-heading">
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">COURSE BREAKDOWN</p>
+                    <h2 id="courses-heading">Your courses</h2>
+                </div>
+                <button class="button button-secondary" id="add-course" type="button">+ Add course</button>
+            </div>
+
+            <form id="gpa-form">
+                <div class="course-list" id="course-list"></div>
+                <p class="form-message" id="form-message" role="alert" aria-live="polite"></p>
+                <button class="button button-primary" type="submit">Calculate GPA <span aria-hidden="true">→</span></button>
+            </form>
+        </section>
+
+        <aside class="result-panel" aria-live="polite">
+            <p class="eyebrow">YOUR RESULT</p>
+            <div class="result-value" id="gpa-result">--</div>
+            <div class="classification" id="classification-result">Calculate to see your class</div>
+            <p class="result-label">out of 5.0</p>
+            <div class="scale-note"><span>MAK scale</span><span>A+ = 5.0</span></div>
+        </aside>
+    </main>
+
+    <template id="course-template">
+        <div class="course-row">
+            <label>
+                <span>Course</span>
+                <input class="course-name" type="text" placeholder="e.g. Mathematics">
+            </label>
+            <label>
+                <span>Credits</span>
+                <input class="course-credits" type="number" min="1.0" step="1.0" placeholder="3" required>
+            </label>
+            <label>
+                <span>Mark or grade</span>
+                <input class="course-grade" type="text" placeholder="e.g. 86 or A" required>
+            </label>
+            <button class="remove-course" type="button" aria-label="Remove course">×</button>
+        </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
